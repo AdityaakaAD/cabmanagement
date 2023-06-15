@@ -1,0 +1,97 @@
+// PS1: creating/updating/deleting a driver
+// Each driver should have:
+
+// Driver Name
+// Driver ID Number
+// Driver Email
+// Driver Phone Number
+
+Table driver_master {
+  id integer [primary key]
+  driver_id integer
+  driver_name varchar(255)
+  driver_email varchar(255)
+  driver_phone bigint
+  driver_license varchar
+  primary_vehicle varchar(100)
+  secondary_vehicle varchar(100)
+  car_assigned varchar(50)
+  created_at timestamp
+  last_modified timestamp
+  modified_by int
+}
+
+// PS2: creating/updating/deleting a cab
+// Each car should have:
+
+// Cab Registration Number
+// Cab Model
+// Cab Colour
+
+Table cab_master {
+  cab_id integer [primary key]
+  cab_owner_id interger
+  cab_reg_no varchar(100)
+  cab_model varchar(100)
+  cab_colour varchar(100)
+  cab_type varchar(100)
+  cab_docs file
+  created_at timestamp
+  status varchar(20)
+  last_modified timestamp
+  modified_by int
+}
+
+//PS3: lending/updating/deleting driver for each cab
+// The functionality of the application is:
+
+// 1. There should be 2 pages/screens/views – Driver Page and Cab Page
+
+// 2. On the Driver Page:
+
+// The user should be able to select a driver from a list of drivers(From Problem Statement 1)
+// Then let them select, update, delete the cab (From Problem Statement 2) assigned for that driver
+// 3. On the Cabs Page:
+
+// The user should be able to select a cab from list of cabs(From Problem Statement 2)
+// Then let them select, update, delete the driver that are assigned to that cab
+Table cab_driver_assignment {
+  id integer [primary key]
+  cab_id int
+  driver_id int
+  last_modified timestamp
+  modified_by int
+}
+
+// Cab types
+Table car_type_master {
+  id integer [primary key]
+  car_type varchar(255)
+  last_modified timestamp
+  modified_by int
+}
+
+//User Login
+Table login{
+  id integer [primary key]
+  username varchar
+  password varchar
+  user_role varchar
+  created_at timestamp
+  status varchar(20)
+  last_modified timestamp
+  modified_by int
+  
+}
+
+Ref: driver_master.driver_id - cab_driver_assignment.driver_id // many-to-one
+Ref: driver_master.driver_id - login.id // many-to-one
+Ref: cab_master.cab_owner_id - login.id // many-to-one
+Ref: cab_master.cab_id - cab_driver_assignment.cab_id // many-to-one
+Ref: car_type_master.id - driver_master.primary_vehicle // many-to-one
+Ref: car_type_master.id - driver_master.secondary_vehicle // many-to-one
+Ref: car_type_master.id - cab_master.cab_type // many-to-one
+
+// Ref: users.id < follows.following_user_id
+
+// Ref: users.id < follows.followed_user_id
