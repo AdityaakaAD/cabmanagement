@@ -1,0 +1,23 @@
+ACTORS
+1} Application User (USER):
+	- Select Car/Cab
+	- Select Driver
+	- Select Both Cab & Driver
+
+2} Driver(Will Register Himself)
+	- Register As Driver
+	- Update His/Her details (AFTER APPROVAL - optional)
+	- Delete Himself (Check if any user hired)
+
+3} Car Owner(Register his car for service)
+	- Register His Car
+	- Update car Details (AFTER APPROVAL - optional)
+	- Remove Car (Check if any user hired)
+
+4} Admin(All Functionalities Access)
+	- Add/Update/delete Driver
+	- Add/Update/delete Car
+	- Add/Update/delete Driver
+	- Assign car and driver assignments(On what basis ?)
+	- BASIS
+		primary used vehicle & secondary used vehicle
